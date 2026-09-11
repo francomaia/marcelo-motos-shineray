@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcelo Motos Shineray</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/593SdgDD/faviconsiteshineray.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Modal Styles -->
+    <link rel="stylesheet" href="/modal.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --color-white: #FFFFFF;
+            --color-black: #111111;
+            --color-gray-light: #F5F5F5;
+            --color-gray-text: #666666;
+            --color-red: #CC0000;
+            --font-main: 'Manrope', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* offset for fixed header */
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--color-black);
+            background-color: var(--color-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-red);
+            color: var(--color-white);
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            background-color: #a30000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(204, 0, 0, 0.2);
+            color: var(--color-white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo img {
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-menu li a {
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu li a:hover {
+            color: var(--color-red);
+        }
+
+        /* Mega Menu Styles */
+        .nav-menu li {
+            position: static;
+        }
+
+        .has-dropdown:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .mega-menu {
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            padding: 40px 0;
+            z-index: 999;
+            border-top: 1px solid var(--color-gray-light);
+        }
+
+        .mega-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .mega-menu-col h3 {
+            color: var(--color-red);
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .mega-menu-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .mega-menu-col ul li a {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-black);
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+            display: block;
+        }
+
+        .mega-menu-col ul li a:hover {
+            color: var(--color-red);
+        }
+
+        .nav-menu li a i {
+            font-size: 10px;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .has-dropdown:hover > a i {
+            transform: rotate(180deg);
+            color: var(--color-red);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mega-menu {
+                display: none; /* Hide mega menu on mobile for simplicity */
+            }
+            .has-dropdown > a i {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: calc(100vh - 80px);
+            width: 100%;
+            overflow: hidden;
+            margin-top: 80px; /* offset for sticky header */
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 40px;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(17, 17, 17, 0.8) 0%, rgba(17, 17, 17, 0) 100%);
+            z-index: -1;
+        }
+
+        .scroll-indicator {
+            color: var(--color-white);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            z-index: 1;
+        }
+
+        .scroll-indicator span {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .scroll-indicator i {
+            font-size: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Catalog Section */
+        .catalog {
+            padding: 80px 0;
+            background-color: var(--color-white);
+        }
+
+        .catalog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .catalog-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+        }
+
+        .catalog-header h2 span {
+            color: var(--color-red);
+        }
+
+        .btn-link {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-black);
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--color-black);
+            padding-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-link:hover {
+            color: var(--color-red);
+            border-color: var(--color-red);
+        }
+
+        .swiper {
+            width: 100%;
+            padding: 20px 0 40px 0;
+        }
+
+        .swiper-slide {
+            background: var(--color-white);
+            border-radius: 12px;
+            border: 1px solid #EAEAEA;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+        }
+
+        .swiper-slide:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .card-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-label {
+            font-size: 10px;
+            color: var(--color-gray-text);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .card-price-label {
+            font-size: 12px;
+            color: var(--color-gray-text);
+        }
+
+        .card-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-black);
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--color-red) !important;
+        }
+
+        /* Differentials Section */
+        .differentials {
+            padding: 80px 0;
+            background-color: var(--color-gray-light);
+            text-align: center;
+        }
+
+        .differentials-header {
+            margin-bottom: 50px;
+        }
+
+        .differentials-header h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .differentials-header p {
+            font-size: 18px;
+            color: var(--color-gray-text);
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .diff-card {
+            background: var(--color-white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            text-align: left;
+        }
+
+        .diff-icon {
+            font-size: 32px;
+            color: var(--color-red);
+            margin-bottom: 20px;
+        }
+
+        .diff-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .diff-card p {
+            font-size: 15px;
+            color: var(--color-gray-text);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 80px 0;
+            background-color: var(--color-gray-light);
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .gallery-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .gallery-header h2 span {
+            color: var(--color-red);
+        }
+
+        .gallery-header p {
+            color: var(--color-gray-text);
+            font-size: 18px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Location & Social Section */
+        .location-social {
+            padding: 80px 0;
+            background-color: var(--color-white);
+        }
+
+        .location-social-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            height: 300px;
+            border: 1px solid #EAEAEA;
+        }
+
+        .instagram-simple-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .ig-simple-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            gap: 15px;
+        }
+
+        .ig-simple-link:hover {
+            transform: translateY(-5px);
+        }
+
+        .ig-simple-profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .ig-simple-profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ig-simple-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .ig-simple-handle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000000;
+            letter-spacing: 0.5px;
+        }
+
+        .ig-simple-cta {
+            font-size: 16px;
+            color: #666666;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ig-simple-arrow {
+            font-size: 16px;
+            color: #666666;
+            transition: transform 0.3s ease;
+        }
+
+        .ig-simple-link:hover .ig-simple-arrow {
+            transform: translateX(8px);
+        }
+
+        /* Contact Form Section */
+        .contact-form-section {
+            background-color: var(--color-black);
+            color: var(--color-white);
+            padding: 80px 0;
+        }
+
+        .contact-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact-form-text h2 {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .contact-form-container {
+            background-color: #111;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .g-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .g-form input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #333;
+            background-color: #222;
+            color: var(--color-white);
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .g-form input:focus {
+            outline: none;
+            border-color: var(--color-red);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-black);
+            color: var(--color-white);
+            padding: 60px 0 20px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 20px;
+        }
+
+        .footer-about p {
+            color: #AAAAAA;
+            font-size: 14px;
+        }
+
+        .footer-contact h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--color-white);
+        }
+
+        .footer-contact ul li {
+            margin-bottom: 12px;
+            color: #AAAAAA;
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .footer-contact ul li i {
+            margin-top: 4px;
+            color: var(--color-red);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333333;
+            padding-top: 20px;
+            text-align: center;
+            color: #777777;
+            font-size: 13px;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            color: #FFF;
+        }
+
+        /* Revision Pricing Section */
+        .revision-pricing {
+            padding: 80px 0;
+            background-color: var(--color-white);
+            text-align: center;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .pricing-card {
+            background: var(--color-gray-light);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #EAEAEA;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .pricing-card h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--color-red);
+            text-transform: uppercase;
+        }
+
+        .pricing-card .price {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 20px 0;
+            color: var(--color-black);
+        }
+
+        .pricing-card .price span {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .pricing-card ul {
+            text-align: left;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .pricing-card ul li {
+            font-size: 14px;
+            color: var(--color-gray-text);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pricing-card ul li i {
+            color: #28a745;
+            font-size: 12px;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-container {
+            background: var(--color-white);
+            width: 100%;
+            max-width: 600px;
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--color-gray-text);
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--color-red);
+        }
+
+        .modal-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .modal-header h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--color-black);
+            text-transform: uppercase;
+        }
+
+        .modal-header p {
+            color: var(--color-gray-text);
+            font-size: 15px;
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .modal-form .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            color: var(--color-black);
+        }
+
+        .modal-form input, 
+        .modal-form select, 
+        .modal-form textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #DDD;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+            background: var(--color-gray-light);
+            transition: border-color 0.3s;
+        }
+
+        .modal-form input:focus, 
+        .modal-form select:focus, 
+        .modal-form textarea:focus {
+            outline: none;
+            border-color: var(--color-red);
+            background: var(--color-white);
+        }
+
+        .modal-form textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .modal-container {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Form Select */
+        .g-form select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #333;
+            background-color: #222;
+            color: var(--color-white);
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            appearance: none;
+            cursor: pointer;
+        }
+        .form-group {
+            position: relative;
+        }
+        .form-group select + i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .diff-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .contact-form-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .contact-form-text h2 {
+                font-size: 36px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--color-white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .catalog-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .diff-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                margin-top: 80px;
+                height: 300px;
+            }
+
+            .location-social-grid {
+                grid-template-columns: 1fr;
+            }
+            .ig-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .ig-stats {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5564996092838" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="https://i.postimg.cc/HxRndjgy/Shineray-V01.png" alt="Marcelo Motos Shineray" referrerPolicy="no-referrer">
+            </a>
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Início</a></li>
+                <li class="has-dropdown">
+                    <a href="motos.html">Motos <i class="fa-solid fa-chevron-down"></i></a>
+                    <div class="mega-menu">
+                        <div class="container">
+                                <div class="mega-menu-grid">
+                                <div class="mega-menu-col">
+                                    <h3>CICLOMOTORES</h3>
+                                    <ul>
+                                        <li><a href="phoenix-50-s.html">PHOENIX 50 S</a></li>
+                                        <li><a href="jet-50-s-turbo.html">JET 50 S TURBO</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu-col">
+                                    <h3>MOTOCICLETAS</h3>
+                                    <ul>
+                                        <li><a href="new-jef-150-efi.html">NEW JEF 150 EFI</a></li>
+                                        <li><a href="new-jet-125.html">NEW JET 125</a></li>
+                                        <li><a href="rio-125.html">RIO 125</a></li>
+                                        <li><a href="jet-125-ss.html">JET 125 SS</a></li>
+                                        <li><a href="shi-175-efi.html">SHI 175 EFI</a></li>
+                                        <li><a href="shi-175-carburada.html">SHI 175 CARBURADA</a></li>
+                                        <li><a href="jef-150-s-carburada.html">JEF 150 S CARBURADA</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu-col">
+                                    <h3>ALTA CILINDRADA</h3>
+                                    <ul>
+                                        <li><a href="motos.html#urban-efi-150cc">URBAN EFI 150CC</a></li>
+                                        <li><a href="motos.html#storm-efi-200cc">STORM EFI 200CC</a></li>
+                                        <li><a href="motos.html#flash-250cc">FLASH 250CC</a></li>
+                                        <li><a href="motos.html#iron-250cc">IRON 250CC</a></li>
+                                        <li><a href="motos.html#denver-250cc">DENVER 250CC</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#revisao">Revisão</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay loop muted playsinline webkit-playsinline preload="auto">
+            <source src="https://web.horizonsites.com.br/wp-content/uploads/2026/03/VIDEOLPMARCELOMOTOS.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <a href="#catalogo" class="scroll-indicator">
+            <span>ESCOLHA SUA MOTO</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- Catalog Section -->
+    <section class="catalog" id="catalogo">
+        <div class="container">
+            <div class="catalog-header">
+                <h2>Sua próxima <span>Shineray</span></h2>
+                <a href="motos.html" class="btn-link">Ver todos os modelos</a>
+            </div>
+
+            <!-- Swiper -->
+            <div class="swiper catalogSwiper">
+                <div class="swiper-wrapper">
+                    <!-- 1. Phoenix 50cc -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://marcelomotos.exascompany.com.br/wp-content/uploads/2026/03/imgi_50_Phoenix-50S-EFI.png" alt="Phoenix 50cc" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-label">Shineray | 50cc</span>
+                                <h3 class="card-title">Phoenix 50cc</h3>
+                                <span class="card-price-label">Valor:</span>
+                                <span class="card-price">R$ 9.690,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Jet 50cc -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://marcelomotos.exascompany.com.br/wp-content/uploads/2026/03/imgi_53_motor-jet-50-s-hd_optimized1.jpg.webp" alt="Jet 50cc" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-label">Shineray | 50cc</span>
+                                <h3 class="card-title">Jet 50cc</h3>
+                                <span class="card-price-label">Valor:</span>
+                                <span class="card-price">R$ 11.490,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Jet SS 125cc -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://marcelomotos.exascompany.com.br/wp-content/uploads/2026/03/imgi_8_COR-JET-125SS-EFI-1.webp" alt="Jet SS 125cc" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-label">Shineray | 125cc</span>
+                                <h3 class="card-title">Jet SS 125cc</h3>
+                                <span class="card-price-label">Valor:</span>
+                                <span class="card-price">R$ 12.990,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Rio 125cc -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://marcelomotos.exascompany.com.br/wp-content/uploads/2026/03/imgi_7_RIO-125-EFI-Cinza.webp" alt="Rio 125cc" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-label">Shineray | 125cc</span>
+                                <h3 class="card-title">Rio 125cc</h3>
+                                <span class="card-price-label">Valor:</span>
+                                <span class="card-price">R$ 13.490,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. New Jet 125cc -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://marcelomotos.exascompany.com.br/wp-content/uploads/2026/03/imgi_7_NEW-JET-4.webp" alt="New Jet 125cc" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-label">Shineray | 125cc</span>
+                                <h3 class="card-title">New Jet 125cc</h3>
+                                <span class="card-price-label">Valor:</span>
+                                <span class="card-price">R$ 13.990,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. New JEF 150cc -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://i.postimg.cc/jdC5qZnS/JEF-150s-EFI-1.webp" alt="New JEF 150cc" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-label">Shineray | 150cc</span>
+                                <h3 class="card-title">New JEF 150cc</h3>
+                                <span class="card-price-label">Valor:</span>
+                                <span class="card-price">R$ 16.990,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. SHI 175cc -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://i.postimg.cc/SX0K80vS/imgi_7_Cores-SHI-175-2.webp" alt="SHI 175cc" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-label">Shineray | 175cc</span>
+                                <h3 class="card-title">SHI 175cc</h3>
+                                <span class="card-price-label">Valor:</span>
+                                <span class="card-price">R$ 17.990,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. SHI EFI 175cc -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://marcelomotos.exascompany.com.br/wp-content/uploads/2026/03/imgi_9_Cores-SHI-175s-EFI-1.webp" alt="SHI EFI 175cc" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-label">Shineray | 175cc</span>
+                                <h3 class="card-title">SHI EFI 175cc</h3>
+                                <span class="card-price-label">Valor:</span>
+                                <span class="card-price">R$ 18.990,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Urban EFI 150cc -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://i.postimg.cc/nz28HSrS/Urban-EFI-150cc.png" alt="Urban EFI 150cc" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-label">Shineray | 150cc</span>
+                                <h3 class="card-title">Urban EFI 150cc</h3>
+                                <span class="card-price-label">Valor:</span>
+                                <span class="card-price">R$ 23.990,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Storm EFI 200cc -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://i.postimg.cc/PxyGtVJ6/Storm-EFI-200cc.webp" alt="Storm EFI 200cc" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-label">Shineray | 200cc</span>
+                                <h3 class="card-title">Storm EFI 200cc</h3>
+                                <span class="card-price-label">Valor:</span>
+                                <span class="card-price">R$ 24.990,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 11. Flash 250cc -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://i.postimg.cc/MT5kW3Ht/Flash-250cc.webp" alt="Flash 250cc" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-label">Shineray | 250cc</span>
+                                <h3 class="card-title">Flash 250cc</h3>
+                                <span class="card-price-label">Valor:</span>
+                                <span class="card-price">R$ 24.990,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 12. Iron 250cc -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://i.postimg.cc/sXmFVHxw/Iron-250cc.webp" alt="Iron 250cc" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-label">Shineray | 250cc</span>
+                                <h3 class="card-title">Iron 250cc</h3>
+                                <span class="card-price-label">Valor:</span>
+                                <span class="card-price">R$ 24.990,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 13. Denver 250cc -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://i.postimg.cc/hjcWRRDy/Denver-250cc.webp" alt="Denver 250cc" referrerPolicy="no-referrer">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-label">Shineray | 250cc</span>
+                                <h3 class="card-title">Denver 250cc</h3>
+                                <span class="card-price-label">Valor:</span>
+                                <span class="card-price">R$ 26.990,00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://wa.me/5564996092838" target="_blank" class="btn-primary">
+                    <i class="fa-brands fa-whatsapp"></i> FALAR COM UM CONSULTOR
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentials Section -->
+    <section class="differentials" id="servicos">
+        <div class="container">
+            <div class="differentials-header">
+                <h2>Por que escolher a Marcelo Motos?</h2>
+                <p>Acelere seu sonho com quem entende de verdade.</p>
+            </div>
+            <div class="diff-grid">
+                <div class="diff-card">
+                    <i class="fa-solid fa-users-gear diff-icon"></i>
+                    <h3>Atendimento Especializado</h3>
+                    <p>Nossa equipe é apaixonada por duas rodas e pronta para encontrar a Shineray ideal para o seu perfil e bolso.</p>
+                </div>
+                <div class="diff-card">
+                    <i class="fa-solid fa-wrench diff-icon"></i>
+                    <h3>Pós-Venda de Excelência</h3>
+                    <p>Oficina qualificada, revisão especializada e garantia de fábrica para você rodar com total tranquilidade.</p>
+                </div>
+                <div class="diff-card">
+                    <i class="fa-solid fa-handshake diff-icon"></i>
+                    <h3>Condições Facilitadas</h3>
+                    <p>As melhores taxas do mercado, financiamento rápido e avaliação justa na sua moto usada.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="https://wa.me/5564996092838" target="_blank" class="btn-primary">
+                    <i class="fa-brands fa-whatsapp"></i> GARANTA A SUA SHINERAY
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Revision Pricing Section -->
+    <section class="revision-pricing" id="revisao">
+        <div class="container">
+            <div class="differentials-header">
+                <h2>Planos de <span>Revisão</span></h2>
+                <p>Mantenha sua Shineray sempre nova com nossos planos especializados.</p>
+            </div>
+            <div class="pricing-grid">
+                <!-- Card 1 -->
+                <div class="pricing-card">
+                    <div>
+                        <h3>125cc a 150cc</h3>
+                        <p class="price"><span>R$</span> 159,90</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Troca de Óleo</li>
+                            <li><i class="fa-solid fa-check"></i> Limpeza de Filtro</li>
+                            <li><i class="fa-solid fa-check"></i> Ajuste de Corrente</li>
+                            <li><i class="fa-solid fa-check"></i> Check-up Geral</li>
+                        </ul>
+                    </div>
+                    <button class="btn-primary open-booking" data-cc="125cc a 150cc" data-revisao="Revisão Preventiva">AGENDAR REVISÃO</button>
+                </div>
+                <!-- Card 2 -->
+                <div class="pricing-card">
+                    <div>
+                        <h3>150cc a 175cc</h3>
+                        <p class="price"><span>R$</span> 199,90</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Troca de Óleo</li>
+                            <li><i class="fa-solid fa-check"></i> Limpeza de Filtro</li>
+                            <li><i class="fa-solid fa-check"></i> Ajuste de Corrente</li>
+                            <li><i class="fa-solid fa-check"></i> Check-up de Injeção/Carb.</li>
+                            <li><i class="fa-solid fa-check"></i> Lavagem Simples</li>
+                        </ul>
+                    </div>
+                    <button class="btn-primary open-booking" data-cc="150cc a 175cc" data-revisao="Revisão Completa">AGENDAR REVISÃO</button>
+                </div>
+                <!-- Card 3 -->
+                <div class="pricing-card">
+                    <div>
+                        <h3>Acima de 250cc</h3>
+                        <p class="price"><span>R$</span> 249,90</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Troca de Óleo Premium</li>
+                            <li><i class="fa-solid fa-check"></i> Filtros de Ar e Óleo</li>
+                            <li><i class="fa-solid fa-check"></i> Verificação de Freios</li>
+                            <li><i class="fa-solid fa-check"></i> Diagnóstico Completo</li>
+                            <li><i class="fa-solid fa-check"></i> Lavagem Completa</li>
+                        </ul>
+                    </div>
+                    <button class="btn-primary open-booking" data-cc="Acima de 250cc" data-revisao="Revisão Premium">AGENDAR REVISÃO</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulation Modal -->
+    <div class="modal-overlay" id="simulationModal">
+        <div class="modal-container">
+            <span class="modal-close" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <h2>Simule seu parcelamento</h2>
+                <p>Para simular o parcelamento, precisamos do CPF, telefone e o modelo de interesse.</p>
+            </div>
+            <form id="simulationForm" class="modal-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sim-telefone">Telefone</label>
+                        <input type="tel" id="sim-telefone" placeholder="(00) 00000-0000" maxlength="15" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sim-cpf">CPF</label>
+                        <input type="text" id="sim-cpf" placeholder="000.000.000-00" maxlength="14" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sim-modelo">Modelo de Interesse</label>
+                    <select id="sim-modelo" required>
+                        <option value="" disabled selected>Selecione o Modelo</option>
+                        <option value="PHOENIX 50CC">PHOENIX 50CC</option>
+                        <option value="JET 50CC">JET 50CC</option>
+                        <option value="JET SS 125CC">JET SS 125CC</option>
+                        <option value="RIO 125CC">RIO 125CC</option>
+                        <option value="NEW JET 125CC">NEW JET 125CC</option>
+                        <option value="NEW JEF 150CC">NEW JEF 150CC</option>
+                        <option value="SHI 175CC">SHI 175CC</option>
+                        <option value="SHI EFI 175CC">SHI EFI 175CC</option>
+                        <option value="URBAN EFI 150CC">URBAN EFI 150CC</option>
+                        <option value="STORM EFI 200CC">STORM EFI 200CC</option>
+                        <option value="FLASH 250CC">FLASH 250CC</option>
+                        <option value="IRON 250CC">IRON 250CC</option>
+                        <option value="DENVER 250CC">DENVER 250CC</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; border:none; cursor:pointer;" id="btn-sim-submit">
+                    <i class="fa-brands fa-whatsapp"></i> QUERO SIMULAR AGORA
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-container">
+            <span class="modal-close" id="closeBookingModal">&times;</span>
+            <div class="modal-header">
+                <h2>Complete seu Agendamento</h2>
+                <p>Preencha os dados abaixo para confirmar sua revisão</p>
+            </div>
+
+            <!-- Box Informativo -->
+            <div class="selected-info-box">
+                <div class="info-label">
+                    <span>Cilindrada Selecionada:</span>
+                    <span id="cc-display-value">150cc a 175cc</span>
+                </div>
+                <div class="price-info">
+                    <span id="revisao-type-display">1ª Revisão</span>
+                    <span id="price-display-valor">R$ 130</span>
+                </div>
+            </div>
+
+            <form id="bookingForm" class="modal-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="book-data">Data Preferida <i>*</i></label>
+                        <input type="date" id="book-data" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="book-horario">Horário Preferido <i>*</i></label>
+                        <input type="time" id="book-horario" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="book-nome">Nome Completo <i>*</i></label>
+                        <input type="text" id="book-nome" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="book-telefone">Telefone <i>*</i></label>
+                        <input type="tel" id="book-telefone" placeholder="(66) 99999-9999" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="book-email">Email <i>*</i></label>
+                    <input type="email" id="book-email" placeholder="seu@email.com" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="book-moto">Modelo da Moto <i>*</i></label>
+                        <input type="text" id="book-moto" placeholder="Ex: Shineray XY 150" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="book-ano">Ano da Moto</label>
+                        <input type="text" id="book-ano" placeholder="2024">
+                    </div>
+                </div>
+
+                <!-- Hidden selects for logic consistency -->
+                <div style="display: none;">
+                    <select id="book-cc"><option value=""></option></select>
+                    <select id="book-revisao"><option value=""></option></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="book-obs">Observações Adicionais</label>
+                    <textarea id="book-obs" rows="3" placeholder="Descreva qualquer serviço adicional que você gostaria de realizar (limpeza, ajustes, etc.)" maxlength="500"></textarea>
+                    <div class="char-limit">Máximo 500 caracteres</div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="btn-cancel-booking">Cancelar</button>
+                    <button type="submit" class="btn-confirm" id="btn-book-submit">Confirmar Agendamento</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Location & Social Section -->
+    <section class="location-social" id="localizacao">
+        <div class="container">
+            <div class="location-social-grid">
+                <!-- Map -->
+                <div class="map-container">
+                    <iframe src="https://maps.google.com/maps?q=R.%20Santos%20Dumont,%201135%20-%20Conj.%20Rio%20Claro%20I,%20Jata%C3%AD%20-%20GO,%2075804-045&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                
+                <!-- Instagram -->
+                <div class="instagram-simple-container">
+                    <a href="https://www.instagram.com/shinerayjatai/" target="_blank" class="ig-simple-link">
+                        <div class="ig-simple-profile-pic">
+                            <img src="https://i.postimg.cc/DzXFK6x2/449699287-480224247848602-1794346528983696854-n.jpg" alt="shinerayjatai" referrerPolicy="no-referrer">
+                        </div>
+                        <div class="ig-simple-text">
+                            <span class="ig-simple-handle">@shinerayjatai</span>
+                            <span class="ig-simple-cta">Siga-nos no Instagram <i class="fa-solid fa-arrow-right ig-simple-arrow"></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section" id="contato">
+        <div class="container">
+            <div class="contact-form-grid">
+                <div class="contact-form-text">
+                    <h2><span style="color: var(--color-red);">Revolucione seu futuro</span> com a tecnologia, economia e qualidade Shineray.</h2>
+                </div>
+                <div class="contact-form-container">
+                    <form id="whatsapp-form-index" class="g-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="tel" id="index-telefone" placeholder="Telefone" maxlength="15" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="index-cpf" placeholder="CPF" maxlength="14" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select id="index-modelo" required>
+                                <option value="" disabled selected>Selecione o Modelo</option>
+                                <option value="PHOENIX 50CC">PHOENIX 50CC</option>
+                                <option value="JET 50CC">JET 50CC</option>
+                                <option value="JET SS 125CC">JET SS 125CC</option>
+                                <option value="RIO 125CC">RIO 125CC</option>
+                                <option value="NEW JET 125CC">NEW JET 125CC</option>
+                                <option value="NEW JEF 150CC">NEW JEF 150CC</option>
+                                <option value="SHI 175CC">SHI 175CC</option>
+                                <option value="SHI EFI 175CC">SHI EFI 175CC</option>
+                                <option value="URBAN EFI 150CC">URBAN EFI 150CC</option>
+                                <option value="STORM EFI 200CC">STORM EFI 200CC</option>
+                                <option value="FLASH 250CC">FLASH 250CC</option>
+                                <option value="IRON 250CC">IRON 250CC</option>
+                                <option value="DENVER 250CC">DENVER 250CC</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">
+                            <i class="fa-brands fa-whatsapp"></i> QUERO SIMULAR AGORA
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="https://i.postimg.cc/HxRndjgy/Shineray-V01.png" alt="Marcelo Motos Shineray">
+                    </div>
+                    <p>A Marcelo Motos é a sua concessionária autorizada Shineray. Liberdade, economia e performance em cada trajeto.</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-location-dot"></i> R. Santos Dumont, 1135 - Conj. Rio Claro I, Jataí - GO, 75804-045</li>
+                        <li><i class="fa-brands fa-whatsapp"></i> (64) 99609-2838</li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Siga-nos</h4>
+                    <ul style="display: flex; gap: 15px;">
+                        <li><a href="https://www.instagram.com/shinerayjatai/" target="_blank" style="font-size: 24px; color: #fff;"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="https://www.facebook.com/motorsmarcelo/" target="_blank" style="font-size: 24px; color: #fff;"><i class="fa-brands fa-facebook"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Marcelo Motos Shineray. Todos os direitos reservados.</p>
+                <div class="credits" style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 15px; font-size: 12px; color: #AAAAAA;">
+                    <span>Desenvolvido por: <a href="https://instagram.com/ofrancomaia" target="_blank" style="color: var(--color-white); font-weight: 600; transition: color 0.3s;" onmouseover="this.style.color='var(--color-red)'" onmouseout="this.style.color='var(--color-white)'">@ofrancomaia</a></span>
+                    <span style="width: 1px; height: 12px; background-color: #555;"></span>
+                    <a href="https://exascompany.com.br" target="_blank" style="display: flex; align-items: center; gap: 6px; color: var(--color-white); font-weight: 600; transition: color 0.3s;" onmouseover="this.style.color='var(--color-red)'" onmouseout="this.style.color='var(--color-white)'">
+                        <img src="https://exascompany.com.br/wp-content/uploads/2025/08/FAVICON-2-1024x1024.webp" alt="Exas" style="height: 18px; width: 18px; border-radius: 4px; object-fit: cover;" referrerPolicy="no-referrer">
+                        Exas
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    
+    <!-- Modal Script -->
+    <script src="/simulation-modal.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Swiper Initialization
+        if (typeof Swiper !== 'undefined') {
+            const swiper = new Swiper('.catalogSwiper', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    640: { slidesPerView: 2, spaceBetween: 20 },
+                    768: { slidesPerView: 3, spaceBetween: 30 },
+                    1024: { slidesPerView: 4, spaceBetween: 30 },
+                }
+            });
+        }
+    </script>
+</body>
+</html>
